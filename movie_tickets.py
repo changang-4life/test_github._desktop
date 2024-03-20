@@ -53,6 +53,7 @@ def price_calculator():
     if ticket_type == 'Child':
         price = child_price * ticket_num
         return price
+
         
 
 
@@ -71,11 +72,9 @@ price = price_calculator()
 # Component 4 of project: Get Confirmation + Component 5 of project: Update the Totals
 
 print(f'You would like {ticket_num} {ticket_type} tickets for ${price}.')
-user_confirmation = str(input('Confirm order?: (Y / N): '))
+user_confirmation = str(input('Continue ordering?: (Y / N): '))
 
-if user_confirmation.capitalize() == 'Y':
-    total_sales += price
-    total_tickets += ticket_num
+while user_confirmation.capitalize() == 'Y':
     
     if ticket_type == 'Adult':
         adult_tickets += ticket_num
@@ -85,6 +84,26 @@ if user_confirmation.capitalize() == 'Y':
         
     if ticket_type == 'Child':
         child_tickets += ticket_num
+        
+        
+    show_categories()
+    ticket_type = ask_ticket_type().capitalize()
+        
+    ticket_num = ask_ticket_num()
+
+    price = price_calculator()
+    
+    print(f'You would like {ticket_num} {ticket_type} tickets for ${price}.')
+    user_confirmation = str(input('Confirm order?: (Y / N): '))
+    
+    while price:
+        total_sales += price
+        total_tickets += ticket_num
+
+print(f"The total money earned is {total_sales}, And the total number of tickets sold is {total_tickets}")
+    
+
+        
         
 # Component 6 of project: Ask for next sale or user quits
     
