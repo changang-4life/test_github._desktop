@@ -1,3 +1,15 @@
+""" Movie theatre """
+
+def integer_checker(question):
+    number = ''
+    while not number:
+        try:
+            number = int(input(question))
+            return number
+        except ValueError:
+            print("That was not a number")
+    
+    
 
 """ Movie theatre ticketing system - v6
 Print summary of tickets sold"""
@@ -5,13 +17,8 @@ Print summary of tickets sold"""
 def print_summary(tickets_sold, adult, student, child, gift, total):
     """ Summary of sales """
     print('=' * 40)
-    print(f'The total tickets sold today was {tickets_sold}\n\
-            This was made up of: \n\
-            \t{adult} tickets for adults; and\n\
-            \t{student} tickets for students; and\n\
-            \t{child} tickets for children; and
-            \t{gift} gift vouchers\n\
-            Sales for the day came to ${total:.2f}')
+    print(f"The total tickets sold today was {tickets_sold}\n")
+    print(f'This was made up of: \n \t{adult} tickets for adults; and\n \t{student} tickets for students; and\n \t{child} tickets for children; and \t{gift} gift vouchers\n Sales for the day came to ${total:.2f}')
     print('=' * 40)
     
 
@@ -51,35 +58,39 @@ def sell_ticket():
     """ Component 2 Get category and number of tickets required """
     ticket_wanted = "Y"
     while ticket_wanted == 'Y':
+        valid_types = ['A', 'S', 'C', 'G']
         ticket_type = input("What type of ticket do you want: \n\
                             \t 'A' is for Adult, or \n\
                             \t 'S' is for Student, or \n\
                             \t 'C' is for Child, or \n\
                             \t 'G' is for Gift Voucher \n\
                             >> ").upper()
-        num_tickets = int(input(f"How many {ticket_type} tickets do you want?: "))
-        cost = get_price(ticket_type)
-    
-        if confirm_order(ticket_type, num_tickets, cost):
-            print("Order Confirmed")
-            # Component 5 - Update Totals
-            total_sales += cost
-            tickets_sold += cost * num_tickets
-            if ticket_type == 'A':
-                adult_tickets += num_tickets
-                
-            elif ticket_type == 'S':
-                student_tickets += num_tickets
-                
-            elif ticket_type == 'C':
-                child_tickets += num_tickets
-                
-            elif ticket_type == 'G':
-                gift_tickets += num_tickets
+        if ticket_type not in valid_types:
+            print('Not a valid ticket type')
         else:
-            print("Order Cancelled")
-                        
-        ticket_wanted = input("Do you want to order another ticket? (Y / N): ").upper()
+            num_tickets = integer_checker((f"How many {ticket_type} tickets do you want?: "))
+            cost = get_price(ticket_type)
+        
+            if confirm_order(ticket_type, num_tickets, cost):
+                print("Order Confirmed")
+                # Component 5 - Update Totals
+                total_sales += cost
+                tickets_sold += cost * num_tickets
+                if ticket_type == 'A':
+                    adult_tickets += num_tickets
+                    
+                elif ticket_type == 'S':
+                    student_tickets += num_tickets
+                    
+                elif ticket_type == 'C':
+                    child_tickets += num_tickets
+                    
+                elif ticket_type == 'G':
+                    gift_tickets += num_tickets
+            else:
+                print("Order Cancelled")
+                            
+            ticket_wanted = input("Do you want to order another ticket? (Y / N): ").upper()
         
     print_summary(tickets_sold, adult_tickets, student_tickets, child_tickets, gift_tickets, total_sales)
     

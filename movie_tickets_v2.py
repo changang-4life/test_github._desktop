@@ -26,6 +26,11 @@ def sell_tickets():
                             \t 'C' is for Child, or \n\
                             \t 'G' is for Gift Voucher \n\
                             >> ").upper()
+    num_tickets = int(input(f"How many {ticket_type} tickets do you want?: "))
+    
+    print(f"\n You have ordered {num_tickets} {ticket_type} ticket(s)!")
+    
+    ticket_wanted = input("Do you want to order another ticket? (Y / N): ").upper()
     
 # Main routine
 sell_tickets()

@@ -57,9 +57,10 @@ def price_calculator():
         
 
 
-adult_price = 20
-student_price = 15
-child_price = 5
+adult_price = 12.5
+student_price = 9
+child_price = 7
+gift_price = 0
 
 
 # Main routine  -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
@@ -94,7 +95,7 @@ while user_confirmation.capitalize() == 'Y':
     price = price_calculator()
     
     print(f'You would like {ticket_num} {ticket_type} tickets for ${price}.')
-    user_confirmation = str(input('Confirm order?: (Y / N): '))
+    user_confirmation = str(input('Continue ordering?: (Y / N): '))
     
     while price:
         total_sales += price

@@ -1,3 +1,15 @@
+""" Movie theatre """
+
+def integer_checker(question):
+    number = ''
+    while not number:
+        try:
+            number = int(input(question))
+            return number
+        except ValueError:
+            print("That was not a number")
+    
+    
 
 """ Movie theatre ticketing system - v6
 Print summary of tickets sold"""
@@ -5,13 +17,8 @@ Print summary of tickets sold"""
 def print_summary(tickets_sold, adult, student, child, gift, total):
     """ Summary of sales """
     print('=' * 40)
-    print(f'The total tickets sold today was {tickets_sold}\n\
-            This was made up of: \n\
-            \t{adult} tickets for adults; and\n\
-            \t{student} tickets for students; and\n\
-            \t{child} tickets for children; and
-            \t{gift} gift vouchers\n\
-            Sales for the day came to ${total:.2f}')
+    print(f"The total tickets sold today was {tickets_sold}\n")
+    print(f'This was made up of: \n \t{adult} tickets for adults; and\n \t{student} tickets for students; and\n \t{child} tickets for children; and \t{gift} gift vouchers\n Sales for the day came to ${total:.2f}')
     print('=' * 40)
     
 
@@ -57,7 +64,7 @@ def sell_ticket():
                             \t 'C' is for Child, or \n\
                             \t 'G' is for Gift Voucher \n\
                             >> ").upper()
-        num_tickets = int(input(f"How many {ticket_type} tickets do you want?: "))
+        num_tickets = integer_checker((f"How many {ticket_type} tickets do you want?: "))
         cost = get_price(ticket_type)
     
         if confirm_order(ticket_type, num_tickets, cost):
